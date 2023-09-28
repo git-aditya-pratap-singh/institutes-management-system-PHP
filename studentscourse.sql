@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2023 at 11:39 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 5.6.33
+-- Generation Time: Sep 28, 2023 at 01:18 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,16 +30,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `studentscourse` (
   `cid` int(11) NOT NULL,
   `stud_id` int(100) DEFAULT NULL,
-  `courseName` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `courseName` varchar(100) DEFAULT NULL,
+  `courseId` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `studentscourse`
 --
 
-INSERT INTO `studentscourse` (`cid`, `stud_id`, `courseName`) VALUES
-(42, 112, 'MERN'),
-(43, 112, 'MEAN');
+INSERT INTO `studentscourse` (`cid`, `stud_id`, `courseName`, `courseId`) VALUES
+(64, 114, '', 6),
+(65, 113, '', 4),
+(66, 113, '', 5),
+(67, 112, '', 5),
+(68, 112, '', 6);
 
 --
 -- Indexes for dumped tables
@@ -51,7 +54,8 @@ INSERT INTO `studentscourse` (`cid`, `stud_id`, `courseName`) VALUES
 --
 ALTER TABLE `studentscourse`
   ADD PRIMARY KEY (`cid`),
-  ADD KEY `stud_id` (`stud_id`);
+  ADD KEY `stud_id` (`stud_id`),
+  ADD KEY `courseId` (`courseId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -61,7 +65,7 @@ ALTER TABLE `studentscourse`
 -- AUTO_INCREMENT for table `studentscourse`
 --
 ALTER TABLE `studentscourse`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Constraints for dumped tables
@@ -71,7 +75,8 @@ ALTER TABLE `studentscourse`
 -- Constraints for table `studentscourse`
 --
 ALTER TABLE `studentscourse`
-  ADD CONSTRAINT `studentscourse_ibfk_1` FOREIGN KEY (`stud_id`) REFERENCES `students` (`id`);
+  ADD CONSTRAINT `studentscourse_ibfk_1` FOREIGN KEY (`stud_id`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `studentscourse_ibfk_2` FOREIGN KEY (`courseId`) REFERENCES `course` (`courseId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

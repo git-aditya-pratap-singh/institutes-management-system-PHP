@@ -11,11 +11,11 @@
     </head>
     <body>
          
-    <!-- ******* Add Teachers Form **********-->
-
-    <section class="max-w-[500px] h-fit bg-white rounded border shadow p-5 flex flex-col absolute hidden top-[30%] mx-auto inset-0" id="addcourseForm">
-           <i class="fa fa-times " aria-hidden="true" onclick="return formHide()"></i>
-           <h1 class="text-3xl font-semibold font-[cambria] text-gray-800 text-center">Add Course's</h1>
+    <!-- ******* Edit Course Form **********-->
+ 
+    <section class="max-w-[500px] h-fit bg-white rounded border shadow p-5 flex flex-col absolute top-[25%] mx-auto inset-0" id="addcourseForm">
+          
+           <h1 class="text-3xl font-semibold font-[cambria] text-gray-800 text-center">Edit Course's</h1>
            
            <form action="" method="post" id="myForm" onsubmit="return courseb()" autocomplete="off">
 

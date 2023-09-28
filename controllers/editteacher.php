@@ -5,12 +5,11 @@ if(!isset($_SESSION["user_session"])){
    header("location: ../views/index.php");
 }
 
-
 include '../config/database.php';
 
 $ids = $_GET['id'];
 
-$query = "SELECT * FROM students WHERE id = $ids";
+$query = "SELECT * FROM teachers WHERE id = $ids";
 $run = mysqli_query($conn, $query);
 
 $sturesult = mysqli_fetch_array($run);
@@ -42,7 +41,7 @@ $sturesult = mysqli_fetch_array($run);
                 <div class="rounded-t bg-white mb-0 px-6 py-6">
                     <div class="text-center flex justify-between">
                         <h6 class="text-blueGray-700 text-xl font-bold">
-                            Student Information
+                           Teacher Information
                         </h6>
                         <button class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white  font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none 
                         focus:outline-none mr-1 ease-linear transition-all duration-150" type="button" onclick="fun()">
@@ -55,7 +54,7 @@ $sturesult = mysqli_fetch_array($run);
                     <form action="" method="POST">
 
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                            Student Information
+                            Teacher Information
                         </h6>
                         <div class="flex flex-wrap">
                             <div class="w-full lg:w-6/12 px-4">
@@ -139,7 +138,7 @@ $sturesult = mysqli_fetch_array($run);
                                 //print_r($course_id = $resp['courseId']);
                                 //exit;
 
-                                $cour_query = "SELECT * FROM studentscourse WHERE stud_id = $ids AND courseId = $course_id";
+                                $cour_query = "SELECT * FROM teacherscourse WHERE tea_id = $ids AND courseId = $course_id";
                                 $runque = mysqli_query($conn,$cour_query);
                                 
                                
@@ -170,7 +169,7 @@ $sturesult = mysqli_fetch_array($run);
                 </div>
 
                 <button type="submit" class="mt-5 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none 
-        focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-14 mb-2" name="stupdate">Update</button>
+        focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-14 mb-2" name="tupdate">Update</button>
 
                 </form>
 
@@ -205,7 +204,7 @@ $sturesult = mysqli_fetch_array($run);
 
 error_reporting(0);
 
-if (isset($_POST['stupdate'])) {
+if (isset($_POST['tupdate'])) {
 
 
     $uname = $_POST['name'];
@@ -220,15 +219,15 @@ if (isset($_POST['stupdate'])) {
 
     if (isset($_POST['course'])) {
 
-        $update_query = "UPDATE students SET name='{$uname}', email='{$uemail}', phone='{$uphone}', dob='{$udob}', Gender='{$ugen}' WHERE id = $ids";
+        $update_query = "UPDATE teachers SET name='{$uname}', email='{$uemail}', phone='{$uphone}', dob='{$udob}', Gender='{$ugen}' WHERE id = $ids";
         mysqli_query($conn, $update_query);
 
 
-        mysqli_query($conn, "DELETE FROM studentscourse WHERE stud_id = $ids");
+        mysqli_query($conn, "DELETE FROM teacherscourse WHERE tea_id = $ids");
 
 
         foreach ($ucourseid as $value) {
-            mysqli_query($conn, "insert into studentscourse (stud_id, courseName, courseId) values($ids,'',$value)");
+            mysqli_query($conn, "insert into teacherscourse (tea_id, courseId) values($ids,$value)");
         }
 
 

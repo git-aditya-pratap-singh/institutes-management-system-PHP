@@ -199,11 +199,11 @@ if(!isset($_SESSION["user_session"])){
                             </a>
 
                            
-                        
-                            <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none 
-                            focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onclick="return deleteStudent()">
+                            <a href="../controllers/deleteStudent.php?id=<?php echo $res['id'];?>">
+                            <button type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none 
+                            focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" name="deleteButton">
                             <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-
+                        </a>
                         </td>
                         </tr>
 
@@ -262,10 +262,18 @@ if(!isset($_SESSION["user_session"])){
                         <td class="whitespace-nowrap px-6 py-4"><?php echo $ress['dob'];?></td>
                         <td class="whitespace-nowrap px-6 py-4"><?php echo $ress['Gender'];?></td>
                         <td class="whitespace-nowrap px-6 py-4 flex flex-row gap-x-2">
+
+                        <a href="../controllers/editteacher.php?id=<?php echo $ress['id'];?>">
                             <button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 
-                            focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                            focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                        </a>
+
+                        <a href="../controllers/deleteTeacher.php?id=<?php echo $ress['id'];?>">
                             <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none 
                             focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </a>
+
 
                         </td>
                         </tr>
@@ -323,8 +331,12 @@ if(!isset($_SESSION["user_session"])){
                         <td class="whitespace-nowrap px-6 py-4"><?php echo $resc['description'];?></td>
                         
                         <td class="whitespace-nowrap px-6 py-4 flex flex-row gap-x-2">
+
+                        <a href="../controllers/editCourse.php?id=<?php echo $resc['courseId'];?>">
                             <button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 
                             focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                        </a>
+
                             <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none 
                             focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
 
@@ -361,7 +373,7 @@ if(!isset($_SESSION["user_session"])){
 
            <h1 class="text-3xl font-semibold font-[cambria] text-gray-800 text-center">Add Student's</h1>
            
-           <form action="" method="post" id="myForm" onsubmit="return stuDetails()">
+           <form action="" method="post" id="myForm" onsubmit="return stuDetails()" autocomplete="off">
 
                 <div class="flex flex-col space-y-2 mt-4">
 					<label class="text-[0.9rem] font-bold">Name : </label>
@@ -427,7 +439,7 @@ if(!isset($_SESSION["user_session"])){
             <i class="fa fa-times " aria-hidden="true" onclick="return formHide()"></i>
            <h1 class="text-3xl font-semibold font-[cambria] text-gray-800 text-center">Add Teacher's</h1>
            
-           <form action="" method="post" id="myForm" onsubmit="return teaDetails()">
+           <form action="" method="post" id="myForm" onsubmit="return teaDetails()" autocomplete="off">
 
                 <div class="flex flex-col space-y-2 mt-4">
 					<label class="text-[0.9rem] font-bold">Name : </label>
@@ -474,9 +486,6 @@ if(!isset($_SESSION["user_session"])){
 
         <?php include 'course.php';?>
 
-
-
-
         
         
 
@@ -493,10 +502,11 @@ if(!isset($_SESSION["user_session"])){
 		        }
               }
 
-                window.onload = function init(){
-                    var ig = document.getElementById("image");
-                    ig.style.display = "block";
-                }
+            window.onload = function init(){
+                var ig = document.getElementById("image");
+                ig.style.display = "block";
+            }
+            
         </script>
     
        <script type="text/javascript" src="../js/index.js?v=<?= time() ?>"></script> 

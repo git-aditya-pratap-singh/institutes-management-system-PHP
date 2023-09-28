@@ -24,45 +24,57 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teachers`
+-- Table structure for table `teacherscourse`
 --
 
-CREATE TABLE `teachers` (
-  `id` int(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `phone` varchar(12) NOT NULL,
-  `dob` varchar(100) NOT NULL,
-  `Gender` varchar(100) NOT NULL
+CREATE TABLE `teacherscourse` (
+  `tid` int(100) NOT NULL,
+  `tea_id` int(100) NOT NULL,
+  `courseID` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `teachers`
+-- Dumping data for table `teacherscourse`
 --
 
-INSERT INTO `teachers` (`id`, `name`, `email`, `phone`, `dob`, `Gender`) VALUES
-(2, 'Vicky Samson ', 'samson234@gmail.com', '8546935684', '2023-09-26', 'male'),
-(5, 'Anuradha Singh', 'anuradha23@gmail.com', '8523697456', '2023-09-28', 'female');
+INSERT INTO `teacherscourse` (`tid`, `tea_id`, `courseID`) VALUES
+(3, 2, 6),
+(4, 2, 7),
+(5, 5, 4),
+(6, 5, 6);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `teachers`
+-- Indexes for table `teacherscourse`
 --
-ALTER TABLE `teachers`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `teacherscourse`
+  ADD PRIMARY KEY (`tid`),
+  ADD KEY `teacherscourse_ibfk_1` (`tea_id`),
+  ADD KEY `courseID` (`courseID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `teachers`
+-- AUTO_INCREMENT for table `teacherscourse`
 --
-ALTER TABLE `teachers`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `teacherscourse`
+  MODIFY `tid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `teacherscourse`
+--
+ALTER TABLE `teacherscourse`
+  ADD CONSTRAINT `teacherscourse_ibfk_1` FOREIGN KEY (`tea_id`) REFERENCES `teachers` (`id`),
+  ADD CONSTRAINT `teacherscourse_ibfk_2` FOREIGN KEY (`courseID`) REFERENCES `course` (`courseId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

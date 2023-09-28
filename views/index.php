@@ -54,7 +54,7 @@ if(isset($_SESSION["user_session"])){
         <h1 class="text-center font-bold text-2xl text-gray-600 font-[cambria]">Login here!</h1>
         <span class="absolute -mt-5" id="cross"><i class="fa fa-times" aria-hidden="true"></i></span>
 
-        <form action="" method="POST">
+        <form action="" method="POST" autocomplete="off">
 
         <div class="flex flex-row items-center space-x-2 mt-5 border-2 rounded px-2">
             <span class="text-[#fc036f]"><i class="fa fa-envelope icon"></i></span>		
