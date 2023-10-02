@@ -65,7 +65,7 @@ if(!isset($_SESSION["user_session"])){
 
                 <div class="flex gap-x-10 items-center font-[cambria]">
                     <span class="flex space-x-2 items-center text-white  cursor-pointer"><i class="fa fa-user" aria-hidden="true"></i><h1 class="text-white"><?php echo $_SESSION['user_session'];?></h1></span>
-                    <span class="flex space-x-2 items-center text-white cursor-pointer"><i class="fa fa-sign-out" aria-hidden="true"></i><p class="text-white" onclick="logout()">logout</p></span>
+                    <span class="flex space-x-2 items-center text-white cursor-pointer"><i class="fa fa-power-off text-red-400" aria-hidden="true"></i><p class="text-white" onclick="logout()">logout</p></span>
                 </div>
                
             </div>
@@ -307,7 +307,7 @@ if(!isset($_SESSION["user_session"])){
                         <th scope="col" class="px-6 py-4">ID</th>
                         <th scope="col" class="px-6 py-4">Name</th>
                         <th scope="col" class="px-6 py-4">Description</th>
-                        
+                        <th scope="col" class="px-6 py-4">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -337,8 +337,10 @@ if(!isset($_SESSION["user_session"])){
                             focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
                         </a>
 
+                        <a href="../controllers/deleteCourse.php?id=<?php echo $resc['courseId'];?>">
                             <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none 
                             focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </a>
 
                         </td>
                         </tr>
@@ -367,8 +369,9 @@ if(!isset($_SESSION["user_session"])){
 
 
         <!-- ******* Add Students Form **********-->
-
+        
         <section class="max-w-[500px] h-fit bg-white rounded border shadow p-5 flex flex-col absolute hidden top-[30%]  mx-auto inset-0" id="addstudentForm">
+        
             <i class="fa fa-times " aria-hidden="true" onclick="return formHide()"></i>
 
            <h1 class="text-3xl font-semibold font-[cambria] text-gray-800 text-center">Add Student's</h1>
@@ -420,12 +423,15 @@ if(!isset($_SESSION["user_session"])){
                 <span class="text-red-500 text-sm font-semibold" id="course_error"></span> -->
 
 
-				<input type="submit" value="Submit" name="submitdata" class="mt-4 bg-emerald-300 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
+				<input type="submit" value="Submit" name="submitdata" class="mt-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
+                 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
 
 
            </form>
-
+          
         </section>
+        
+        
 
 
 
@@ -477,7 +483,8 @@ if(!isset($_SESSION["user_session"])){
 				</div>
 
                
-				<input type="submit" value="Submit" name="submitinfo" class="mt-4 bg-emerald-300 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
+				<input type="submit" value="Submit" name="submitinfo" class="mt-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
+                 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
 
            </form>
 

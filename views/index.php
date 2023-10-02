@@ -28,7 +28,7 @@ if(isset($_SESSION["user_session"])){
 
     <body>
         
-    <section class="bg-[url('../img/homep.jpg')] bg-center bg-cover w-full h-full relative">
+    <section class="bg-[url('../img/home.jpg')] bg-center bg-cover w-full h-full relative">
         
         <div class="flex flex-col justify-between items-stretch">
             <div class="w-full bg-slate-200 p-8 text-center text-4xl font-bold font-[cambria] text-gray-800 drop-shadow-xl">
@@ -39,8 +39,9 @@ if(isset($_SESSION["user_session"])){
                 <h1>“Education is the passport to the future, for tomorrow belongs to those who prepare for it today.”</h1>
             </div>
 
-            <button class="mx-auto p-2 bg-[#fc036f] text-white font-[cambria] rounded shadow-lg w-[200px] flex gap-x-2 justify-center items-center
-            active:scale-90 ease-in-out duration-500" onclick="loginform()"><i class="fa-solid fa-right-to-bracket"></i>login</button>
+            <button class="mx-auto p-2 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
+             text-white font-[cambria] rounded shadow-lg w-[200px] flex gap-x-2 justify-center items-center
+" onclick="loginform()"><i class="fa fa-sign-in" aria-hidden="true"></i> login</button>
 
 
         </div>
@@ -52,23 +53,24 @@ if(isset($_SESSION["user_session"])){
 
     <section class="bg-white rounded p-5 w-[500px] mx-[35%] absolute -mt-[30%] scale-0" id="loginform">
         <h1 class="text-center font-bold text-2xl text-gray-600 font-[cambria]">Login here!</h1>
-        <span class="absolute -mt-5" id="cross"><i class="fa fa-times" aria-hidden="true"></i></span>
+        <span class="absolute -mt-5" id="cross"><i class="fa fa-times" aria-hidden="true" onclick="loginhide()"></i></span>
 
         <form action="" method="POST" autocomplete="off">
 
         <div class="flex flex-row items-center space-x-2 mt-5 border-2 rounded px-2">
-            <span class="text-[#fc036f]"><i class="fa fa-envelope icon"></i></span>		
+            <span class="text-blue-700"><i class="fa fa-envelope icon"></i></span>		
 			<input type="text" name="user" id="user" required placeholder="enter your username" class="w-full p-2 text-[0.9rem] outline-none text-[cambria]" />
         </div>
         <span class="text-red-500 text-[0.8rem] font-semibold" id="error"></span>
 
         <div class="flex flex-row items-center space-x-2 mt-5 border-2 rounded px-2">
-            <span class="text-[#fc036f]"><i class="fa fa-key" aria-hidden="true"></i></span>		
+            <span class="text-blue-700"><i class="fa fa-key" aria-hidden="true"></i></span>		
 			<input type="password" name="pswd" id="pswd" required placeholder="enter your password" class="w-full p-2 text-[0.9rem] outline-none text-[cambria] " />
         </div>
 
-        <button class="w-full mt-5 p-2 bg-[#fc036f] text-white font-[cambria] rounded shadow-lg w-[200px] flex gap-x-2 justify-center items-center
-            active:scale-90 ease-in-out duration-500" name="logindata">Login</button>
+        <button class="w-full mt-5 p-2 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
+         text-white font-[cambria] rounded shadow-lg w-[200px] flex gap-x-2 justify-center items-center
+            active:scale-90 ease-in-out duration-500" name="logindata"> <i class="fa fa-sign-in" aria-hidden="true"></i> login</button>
 
 
         </form>
@@ -77,6 +79,13 @@ if(isset($_SESSION["user_session"])){
     </section>
 
     <script src="../js/index.js"></script>
+    <script>
+        var data = document.getElementById("loginform");
+
+        function loginhide(){
+            data.style.transform="scale(0)";
+        }
+    </script>
     </body>
 </html>
 
@@ -115,8 +124,10 @@ if(isset($_POST['logindata'])){
         if(mysqli_num_rows($result) == 1){
     
             $row=mysqli_fetch_assoc($result);
+
+             $pswd = base64_decode($row['password']);
             
-            if($password == $row['password']){
+            if($password == $pswd){
                 $_SESSION["user_session"] = $row['username'];
 
                 //----Move on another file---

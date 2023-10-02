@@ -12,6 +12,18 @@
     <body>
          
     <!-- ******* Edit Course Form **********-->
+
+    <?php
+      error_reporting(0);
+    
+      include '../config/database.php';
+
+      $id = $_GET['id'];
+      $select = "SELECT * FROM course WHERE courseId = $id";
+      $res = mysqli_query($conn, $select);
+
+      $response = mysqli_fetch_assoc($res);
+    ?>
  
     <section class="max-w-[500px] h-fit bg-white rounded border shadow p-5 flex flex-col absolute top-[25%] mx-auto inset-0" id="addcourseForm">
           
@@ -21,19 +33,20 @@
 
                 <div class="flex flex-col space-y-2 mt-4">
 					<label class="text-[0.9rem] font-bold">Course : </label>
-					<input type="text" name="course" id="course" placeholder="enter your course" required class="p-2 text-[0.9rem] border-2 rounded "/>
+					<input type="text" name="course" id="course" placeholder="enter your course" required class="p-2 text-[0.9rem] border-2 rounded " value="<?php echo $response['courseName'];?>"/>
                     <span class="text-red-500 text-sm font-semibold" id="course_error"></span>
 				</div>
 
 
 				<div class="flex flex-col space-y-2 mt-4">
 					<label class="text-[0.9rem] font-bold">Description : </label>
-					<textarea name="cdescription" id="cdescription" required placeholder="enter your Description" rows="4" cols="50" class="p-2 text-[0.9rem] border-2 rounded " /></textarea>
+					<input type="text" name="cdescription" id="cdescription" required placeholder="enter your Description" class="p-2 text-[0.9rem] border-2 rounded" value="<?php echo $response['description'];?>"/>
                     <span class="text-red-500 text-sm font-semibold" id="description_error"></span>
 				</div>
 
 
-				<input type="submit" value="Submit" name="submitcourse" class="mt-4 bg-emerald-300 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
+				<input type="submit" value="Submit" name="submitcourse" class="mt-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
+                 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
 
 
            </form>
@@ -58,54 +71,29 @@ if(isset($_POST['submitcourse'])){
     $c_des = $_POST['cdescription'];
 
     
-
-
     include '../config/database.php';
 
-    
-    $checkquery = "SELECT * FROM course WHERE courseName = '$c_name'";
-    $result = mysqli_query($conn, $checkquery);
 
+        $checkquery = "UPDATE course SET courseName='{$c_name}', description='{$c_des}' WHERE courseId = $id";
+        $result = mysqli_query($conn, $checkquery);
+          
         
-    if(mysqli_num_rows($result) > 0){
         ?>
         <script>
-           Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: "These Course is already registered!",
-                    showConfirmButton: false,
-                    timer: 1500  
-                    })
-        </script>
-        <?php 
-
-    }
-    else{
-        $insertquery = "INSERT INTO course(courseName,description) values('$c_name','$c_des')";
-
-                                   
-        $query3=mysqli_query($conn,$insertquery);
-
-            if($query3){
-                ?>
-                <script>
-                
-                   Swal.fire({
+            Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: "Add Course is Successfully!",
+                    title: "These Course has been Updated!",
                     showConfirmButton: false,
                     timer: 1500  
                     })
-                </script>
 
-                <?php
-            
-            }
-    }
+                    setTimeout(function(){window.location.href="../views/dashboard.php";}, 2000);
+        </script>
+        <?php 
+    
+    } 
+    
 
-
-}
 
 ?>

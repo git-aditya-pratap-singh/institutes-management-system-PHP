@@ -28,8 +28,10 @@ include '../config/database.php';
 
 $ids = $_GET['id'];
 
-$delete_query = "DELETE FROM teachers WHERE id = $ids";
+$del = "DELETE FROM teacherscourse WHERE tea_id = $ids";
+$rund = mysqli_query($conn, $del);
 
+$delete_query = "DELETE FROM teachers WHERE id = $ids";
 $run = mysqli_query($conn, $delete_query);
 
 ?>

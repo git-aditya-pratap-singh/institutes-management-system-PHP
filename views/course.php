@@ -33,7 +33,8 @@
 				</div>
 
 
-				<input type="submit" value="Submit" name="submitcourse" class="mt-4 bg-emerald-300 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
+				<input type="submit" value="Submit" name="submitcourse" class="mt-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
+                 text-white font-[cambria] w-full p-1 rounded outline-none shadow-lg active:scale-90 ease-in-out duration-500"/>
 
 
            </form>
